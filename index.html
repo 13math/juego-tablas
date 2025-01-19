@@ -1,0 +1,89 @@
+<!-- Juego 2: Multiplicaciones Rápidas -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicaciones Rápidas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            text-align: center;
+            background-color: #ffe4e1;
+            color: #333;
+        }
+        .game-container {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #ff4500;
+            border-radius: 10px;
+            max-width: 400px;
+            background-color: #fff;
+        }
+        input[type="number"] {
+            font-size: 20px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff4500;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #c33300;
+        }
+        .result {
+            font-size: 1.8em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplicaciones Rápidas</h1>
+    <p>Responde lo más rápido posible. ¡Pon a prueba tus habilidades de multiplicación!</p>
+    <div class="game-container">
+        <p id="problem"></p>
+        <input type="number" id="answer" placeholder="Escribe tu respuesta">
+        <button onclick="checkAnswer()">Comprobar</button>
+        <p class="result" id="result"></p>
+    </div>
+
+    <script>
+        let num1 = Math.floor(Math.random() * 10) + 1;
+        let num2 = Math.floor(Math.random() * 10) + 1;
+        const problemElement = document.getElementById('problem');
+        const resultElement = document.getElementById('result');
+        problemElement.textContent = `¿Cuánto es ${num1} × ${num2}?`;
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            const correctAnswer = num1 * num2;
+
+            if (userAnswer === correctAnswer) {
+                resultElement.textContent = '¡Correcto! 🎉';
+                resultElement.style.color = 'green';
+                resetGame();
+            } else {
+                resultElement.textContent = 'Intenta de nuevo. ❌';
+                resultElement.style.color = 'red';
+            }
+        }
+
+        function resetGame() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            problemElement.textContent = `¿Cuánto es ${num1} × ${num2}?`;
+            document.getElementById('answer').value = '';
+        }
+    </script>
+</body>
+</html>
